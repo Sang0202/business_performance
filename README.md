@@ -1,22 +1,21 @@
-Business Performance Analysis
-Description:
+# Business Performance Analysis
+## Description:
 This project is a simplified version of a personal project aimed at analyzing the performance of a company. It helps to assess the financial situation of a business by processing and analyzing various financial metrics.
 
-Overview
-Motivation:
+## Overview
+### Motivation:
 The motivation for this project was to assist my father in managing and understanding the financial situation of his company more effectively.
 
-Built With:
+### Built With:
 
-Python
-Pandas
-NumPy
-How It Works
+- Python
+- Pandas
+- NumPy
+### How It Works
 The project operates using a parameter JSON file (param.json) that specifies the input data path, output data path, and the operations to perform. Below is a sample of the param.json file:
 
-param.json Sample
-json
-Copier le code
+
+```json
 {
     "input": "input.arrow",
     "output": "output.arrow",
@@ -64,52 +63,49 @@ Copier le code
         }
     ]
 }
-Explanation of param.json
-input: Path to the input data file in .arrow format.
-output: Path to the output data file in .arrow format.
-batch_size: Number of records to process in a batch.
-operations: List of operations to perform.
-operator: Type of operation, e.g., business_performance.
-options: Detailed configuration for the operation.
-ds: The name of the datetime column.
-groups: Group of financial metrics categorized as actual_cost, projected_cost, actual_revenue, and projected_revenue.
-actual_cost: Columns representing actual costs.
-projected_cost: Columns representing projected costs.
-actual_revenue: Columns representing actual revenue.
-projected_revenue: Columns representing projected revenue.
-name: Name for the resulting aggregated column.
-alias: Custom names for computed metrics like actual_profit and projected_profit.
-report: List of reports to generate, such as total_by_time, percent_by_total, etc.
-ds_filter: Filter for the datetime, e.g., specific year and month.
-agg_fn: Aggregation function, default is sum.
-Key Components
-Data Processing: Extracts and processes data based on the specified configurations in param.json.
-Business Performance Analysis: Computes various financial metrics and generates performance reports.
-Getting Started
-Installation:
-
+```
+### Explanation of param.json
+- input: Path to the input data file in .arrow format.
+- output: Path to the output data file in .arrow format.
+- batch_size: Number of records to process in a batch.
+- operations: List of operations to perform.
+  - operator: Type of operation, e.g., business_performance.
+  - options: Detailed configuration for the operation.
+    - ds: The name of the datetime column.
+    - groups: Group of financial metrics categorized as actual_cost, projected_cost, actual_revenue, and projected_revenue.
+      - actual_cost: Columns representing actual costs.
+      - projected_cost: Columns representing projected costs.
+      - actual_revenue: Columns representing actual revenue.
+      - projected_revenue: Columns representing projected revenue.
+      - name: Name for the resulting aggregated column.
+     - alias: Custom names for computed metrics like actual_profit and projected_profit.
+     - report: List of reports to generate, such as total_by_time, percent_by_total, etc.
+     - ds_filter: Filter for the datetime, e.g., specific year and month.
+     - agg_fn: Aggregation function, default is sum.
+### Key Components
+- Data Processing: Extracts and processes data based on the specified configurations in param.json.
+- Business Performance Analysis: Computes various financial metrics and generates performance reports.
+## Getting Started
+### Installation:
 Clone the repository:
-bash
-Copier le code
+```bash
 git clone https://github.com/yourusername/business-performance-analysis.git
 cd business-performance-analysis
-Install dependencies:
-bash
-Copier le code
-pip install -r requirements.txt
-Usage:
+```
+
+### Usage:
 
 To run the analysis, execute the following command:
 
-bash
-Copier le code
+```bash
 python runme.py -j param.json -s reporter
-Example Usage
-bash
-Copier le code
+```
+### Example Usage
+```bash
 # Run the business performance analysis with the specified JSON parameters
 python runme.py -j param.json -s reporter
-Features
-Data Aggregation: Aggregates financial data based on provided parameters.
-Performance Analysis: Analyzes actual versus projected costs and revenues.
-Custom Reporting: Generates various performance reports including monthly and yearly changes.
+'''
+## Features
+- Data Aggregation: Aggregates financial data based on provided parameters.
+- Performance Analysis: Analyzes actual versus projected costs and revenues.
+- Custom Reporting: Generates various performance reports including monthly and yearly changes.
