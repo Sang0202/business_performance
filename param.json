@@ -1,0 +1,79 @@
+{
+    "input": "88.arrow",
+    "output": "output.arrow",
+    "batch_size": 1000,
+    "operations": [
+    {
+        "operator": "select",
+        "options":
+        {
+            "columns": [
+                "DATE",
+                "C1_NguoiLaoDong", "C2_NguyenVatLieu", "C3_ChiPhiKhac",
+                "TC1_ChiTieuNguoiLaoDong", "TC2_ChiTieuNguyenVatLieu", "TC3_ChiTieuChiPhiKhac",
+                "R1_DoanhThuBanHang", "R2_DoanhThuTaiChinh", "R3_DoanhThuKhac",
+                "TR1_ChiTieuDoanhThuBanHang", "TR2_ChiTieuDoanhThuTaiChinh", "TR3_ChiTieuDoanhThuKhac"
+            ]
+        }
+    },
+    {
+        "operator": "business_performance",
+        "options":
+        {
+            "ds": "DATE",
+            "groups":
+            {
+                "actual_cost":
+                {
+                    "columns": ["C1_NguoiLaoDong", "C2_NguyenVatLieu", "C3_ChiPhiKhac"],
+                    "name": "tong_chi_thuc_te"
+                },
+                "projected_cost":
+                {
+                    "columns": [
+                        "TC1_ChiTieuNguoiLaoDong",
+                        "TC2_ChiTieuNguyenVatLieu",
+                        "TC3_ChiTieuChiPhiKhac"
+                    ],
+                    "name": "tong_chi_du_kien"
+                },
+                "actual_revenue":
+                {
+                    "columns": [
+                        "R1_DoanhThuBanHang",
+                        "R2_DoanhThuTaiChinh",
+                        "R3_DoanhThuKhac"
+                    ],
+                    "name": "tong_thu_thuc_te"
+                },
+                "projected_revenue":
+                {
+                    "columns": [
+                        "TR1_ChiTieuDoanhThuBanHang",
+                        "TR2_ChiTieuDoanhThuTaiChinh",
+                        "TR3_ChiTieuDoanhThuKhac"
+                    ],
+                    "name": "tong_thu_du_kien"
+                }
+            },
+            "alias":
+            {
+                "projected_profit": "loi_nhuan_du_kien",
+                "actual_profit": "loi_nhuan_thuc_te"
+            },
+            "report": [
+                "total_by_time",
+                "percent_by_total",
+                "percent_by_kpi",
+                "percent_change_month",
+                "percent_change_year"
+            ],
+            "ds_filter":
+            {
+                "year": 2022,
+                "month": 3
+            },
+            "agg_fn": "sum"
+        }
+    }]
+}
